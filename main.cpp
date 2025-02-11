@@ -10,7 +10,7 @@
 //Skip driving forward?
 bool driveforward = true;
 
-//drive setup
+//drive setup (measurements in inches)
 
 int wheelspan = 2.5;
 
@@ -78,28 +78,41 @@ int main(){
     gpioSetPWMfrequency(MOTOR2_PIN_A, 1000);
     gpioSetPWMfrequency(MOTOR2_PIN_B, 1000);
 
-    gpioSetPWMrange(MOTOR1_PIN_A, 100);
-    gpioSetPWMrange(MOTOR1_PIN_B, 100);
-    gpioSetPWMrange(MOTOR2_PIN_A, 100);
-    gpioSetPWMrange(MOTOR2_PIN_B, 100);
+    gpioSetPWMrange(MOTOR1_PIN_A, 255);
+    gpioSetPWMrange(MOTOR1_PIN_B, 255);
+    gpioSetPWMrange(MOTOR2_PIN_A, 255);
+    gpioSetPWMrange(MOTOR2_PIN_B, 255);
+    
+    //Start program on user command
+    cout << "\033[1;46mPress ENTER to start program...\033[0m";
+    char output = cin.get();
+    if(output == "q"){
+        cout << "\033[1;41mQuitting.\033[0m" << endl;
+    }
+    cout << "\033[46mStarting program...\033[0m" << endl;
 
-    sleep(10);
     //start driving forwards
     if(driveforward){
-        m1(100);
-        m2(100);
+        m1(255);
+        m2(255);
+        cout << "\033[42mDriving for " << in_per_sec * circle_radius << " seconds forward.\033[0m" << endl;
         sleep(in_per_sec * circle_radius);
-        m1(100);
-        m2(-100);
+        m1(255);
+        m2(-255);
+        cout << "\033[42mDriving for " << ((2*wheelspan*M_PI)/4)*in_per_sec*1000000 << " seconds turn.\033[0m" << endl;
         usleep(((2*wheelspan*M_PI)/4)*in_per_sec*1000000); // calculate for 90deg turn (1/4 of circumference)
     }
-    m1(100);
-    m2(80);
-    cout << "Press ENTER to stop." << endl;
+
+    //start driving and stop when made to
+    m1(255);
+    m2(204);
+    cout << "\033[1;46mPress ENTER to stop.\033[0m";
     cin.get();
 
     //terminate gpio at end and camera
     system("pkill libcamera-vid");
+    m1(0);
+    m2(0);
     camera.join();
     gpioTerminate();
 }
