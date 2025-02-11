@@ -85,8 +85,9 @@ int main(){
     
     //Start program on user command
     cout << "\033[1;46mPress ENTER to start program...\033[0m";
-    char output = cin.get();
-    if(output == "q"){
+    char output;
+    cin << output;
+    if(output === "q"){
         cout << "\033[1;41mQuitting.\033[0m" << endl;
     }
     cout << "\033[46mStarting program...\033[0m" << endl;
