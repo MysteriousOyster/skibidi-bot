@@ -22,7 +22,12 @@ int circle_radius = 12;
 #include <pigpio.h>
 #include <string>
 #include <thread>
+#ifdef _WIN32
+#include <io.h>
+#else
 #include <unistd.h>
+#endif
+
 #include <cmath>
 
 using namespace std;
