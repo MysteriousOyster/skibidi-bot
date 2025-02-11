@@ -35,7 +35,7 @@ using namespace std;
 bool yN(){
     char response;
     while(true){
-        cin << response;
+        cin >> response;
         response = tolower(response);
         if(response == 'y'){
             return true;
