@@ -36,7 +36,7 @@ using namespace std;
 
 void entr(){
     while(true){
-        if(cin.get() = "\n"){
+        if(cin.get() == '\n'){
             return;
         }
     }
