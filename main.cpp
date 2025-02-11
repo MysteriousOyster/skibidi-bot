@@ -34,7 +34,7 @@ using namespace std;
 
 
 void operateCamera(){
-    system("libcamera-vid -t 0 --inline --listen -o tcp://0.0.0.0:8554");
+    //system("libcamera-vid -t 0 --inline --listen -o tcp://0.0.0.0:8554");
 }
 
 void m1(int power){
