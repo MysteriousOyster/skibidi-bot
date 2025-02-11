@@ -34,6 +34,14 @@ int circle_radius = 12;
 
 using namespace std;
 
+void entr(){
+    while(true){
+        if(cin.get() = "\n"){
+            return;
+        }
+    }
+}
+
 bool yN(){
     char response;
     while(true){
@@ -105,7 +113,7 @@ int main(){
 
     //Start program on user command
     cout << "\033[1;46mPress ENTER to start program...\033[0m";
-    cin.get();
+    entr();
     cout << endl;
 
     cout << "\033[46mStarting program...\033[0m" << endl;
@@ -126,7 +134,7 @@ int main(){
     m1(255);
     m2(204);
     cout << "\033[1;46mPress ENTER to stop.\033[0m";
-    cin.get();
+    entr();
 
     //terminate gpio at end and camera
     system("pkill libcamera-vid");
