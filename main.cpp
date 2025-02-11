@@ -29,6 +29,8 @@ int circle_radius = 12;
 #endif
 
 #include <cmath>
+#include <limits>
+#include <cctype>
 
 using namespace std;
 
@@ -37,6 +39,7 @@ bool yN(){
     while(true){
         cin >> response;
         response = tolower(response);
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         if(response == 'y'){
             return true;
         }else if(response = 'n'){
