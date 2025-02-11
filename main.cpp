@@ -12,7 +12,7 @@ bool driveforward = true;
 
 //drive setup
 
-int wheelspan = 3;
+int wheelspan = 2.5;
 
 int in_per_sec = 1;
 int circle_radius = 12;
