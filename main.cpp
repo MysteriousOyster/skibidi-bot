@@ -39,7 +39,7 @@ bool yN(){
         response = tolower(response);
         if(response == "y"){
             return true;
-        }else if(response == "no"){
+        }else if(response = "no"){
             return false;
         }else{
             cout << "Please enter a valid response. (Y/n)";
