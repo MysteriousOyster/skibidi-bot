@@ -45,7 +45,6 @@ bool yN(){
             cout << "Please enter a valid response. (Y/n)";
         }
     }
-    sleep(1);
 }
 
 void operateCamera(){
