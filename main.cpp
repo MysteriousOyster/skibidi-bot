@@ -1,9 +1,9 @@
 // Define motor variables
 
-#define MOTOR1_PIN_A 33
-#define MOTOR1_PIN_B 22
-#define MOTOR2_PIN_A 33
-#define MOTOR2_PIN_B 22
+#define MOTOR1_PIN_A 17
+#define MOTOR1_PIN_B 27
+#define MOTOR2_PIN_A 22
+#define MOTOR2_PIN_B 23
 
 
 
