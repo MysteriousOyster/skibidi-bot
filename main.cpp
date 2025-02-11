@@ -37,9 +37,9 @@ bool yN(){
     while(true){
         cin << response;
         response = tolower(response);
-        if(response == "y"){
+        if(response == 'y'){
             return true;
-        }else if(response = "no"){
+        }else if(response = 'n'){
             return false;
         }else{
             cout << "Please enter a valid response. (Y/n)";
