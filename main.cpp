@@ -97,7 +97,7 @@ int main(){
     gpioSetPWMrange(MOTOR2_PIN_A, 255);
     gpioSetPWMrange(MOTOR2_PIN_B, 255);
     
-    cout << "\033[47mDrive forward? (Y/n)\033[0m";
+    cout << "\033[47;30mDrive forward? (Y/n)\033[0m";
     driveforward = yN();
 
     //Start program on user command
