@@ -36,9 +36,9 @@ using namespace std;
 
 void entr(){
     while(true){
-        if(cin.get() == '\n'){
-            return;
-        }
+        string dummy;
+        getline(cin, dummy);
+        return;
     }
 }
 
