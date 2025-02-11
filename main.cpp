@@ -126,7 +126,7 @@ int main(){
         sleep(in_per_sec * circle_radius);
         m1(255);
         m2(-255);
-        cout << "\033[42mDriving for " << ((2*wheelspan*M_PI)/4)*in_per_sec*1000000 << " seconds turn.\033[0m" << endl;
+        cout << "\033[42mDriving for " << ((2*wheelspan*M_PI)/4)*in_per_sec << " seconds turn.\033[0m" << endl;
         usleep(((2*wheelspan*M_PI)/4)*in_per_sec*1000000); // calculate for 90deg turn (1/4 of circumference)
     }
 
