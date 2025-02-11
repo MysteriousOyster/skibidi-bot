@@ -32,6 +32,20 @@ int circle_radius = 12;
 
 using namespace std;
 
+bool yN(){
+    char response;
+    while(true){
+        cin << response;
+        response = tolower(response);
+        if(response == "y"){
+            return true;
+        }else if(response == "no"){
+            return false;
+        }else{
+            cout << "Please enter a valid response. (Y/n)";
+        }
+    }
+}
 
 void operateCamera(){
     //system("libcamera-vid -t 0 --inline --listen -o tcp://0.0.0.0:8554");
@@ -83,6 +97,9 @@ int main(){
     gpioSetPWMrange(MOTOR2_PIN_A, 255);
     gpioSetPWMrange(MOTOR2_PIN_B, 255);
     
+    cout << "\033[47mDrive forward? (Y/n)\033[0m";
+    driveforward = yN();
+
     //Start program on user command
     cout << "\033[1;46mPress ENTER to start program...\033[0m";
     cin.get();
