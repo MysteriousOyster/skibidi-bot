@@ -34,20 +34,20 @@ void operateCamera(){
 
 void m1(int power){
     if(power < 0){
-        gpioPWM(MOTOR1_PIN_A, power);
+        gpioPWM(MOTOR1_PIN_A, abs(power));
         gpioPWM(MOTOR1_PIN_B, 0);
     }else{
-        gpioPWM(MOTOR1_PIN_B, power);
+        gpioPWM(MOTOR1_PIN_B, abs(power));
         gpioPWM(MOTOR1_PIN_A, 0);
     }
 }
 
 void m2(int power){
     if(power < 0){
-        gpioPWM(MOTOR2_PIN_A, power);
+        gpioPWM(MOTOR2_PIN_A, abs(power));
         gpioPWM(MOTOR2_PIN_B, 0);
     }else{
-        gpioPWM(MOTOR2_PIN_B, power);
+        gpioPWM(MOTOR2_PIN_B, abs(power));
         gpioPWM(MOTOR2_PIN_A, 0);
     }
 }
@@ -55,8 +55,7 @@ void m2(int power){
 int main(){
     //start camera operation
     thread camera = thread(operateCamera);
-    camera.detach();
-
+    
     //make sure gpio pins are good
     if (gpioInitialise() < 0) {
         cerr << "Error initializing pigpio" << endl;
@@ -68,6 +67,12 @@ int main(){
     gpioSetMode(MOTOR1_PIN_B, PI_OUTPUT);
     gpioSetMode(MOTOR2_PIN_A, PI_OUTPUT);
     gpioSetMode(MOTOR2_PIN_B, PI_OUTPUT);
+    
+    gpioSetPWMfrequency(MOTOR1_PIN_A, 1000);
+    gpioSetPWMfrequency(MOTOR1_PIN_B, 1000);
+    gpioSetPWMfrequency(MOTOR2_PIN_A, 1000);
+    gpioSetPWMfrequency(MOTOR2_PIN_B, 1000);
+
     gpioSetPWMrange(MOTOR1_PIN_A, 100);
     gpioSetPWMrange(MOTOR1_PIN_B, 100);
     gpioSetPWMrange(MOTOR2_PIN_A, 100);
@@ -81,7 +86,7 @@ int main(){
         sleep(in_per_sec * circle_radius);
         m1(100);
         m2(-100);
-        sleep(((2*wheelspan*M_PI)/4)*in_per_sec); // calculate for 90deg turn (1/4 of circumference)
+        usleep(((2*wheelspan*M_PI)/4)*in_per_sec*1000000); // calculate for 90deg turn (1/4 of circumference)
     }
     m1(100);
     m2(80);
@@ -90,5 +95,6 @@ int main(){
 
     //terminate gpio at end and camera
     system("pkill libcamera-vid");
+    camera.join();
     gpioTerminate();
 }
